@@ -1,0 +1,117 @@
+Cad Canvas - a 3d CAD/CAM Preview frame in HTML5 Canvas
+=======================================================
+
+I will be adding a readme here. But for the time being your best way to 
+learn what Cad Canvas is and how it works is to head over to the example 
+and take a look at it's source. (examples/gcode_canvas.html)
+
+Also sorry about some of the variable names.. I was learning ruby at the same 
+time I was writing this and some of the ruby_variable_names may have 
+bled over [ sad panda ].
+
+A basic knowledge of JQuery is assummed by this README.
+
+Features
+==========
+
+
+- EMC 2 AXIS Inspired
+
+	- EMC2 AXIS style mouse bindings
+		- scroll to zoom
+		- click to drag
+		- right click to rotate
+			(alternatively for mac peoples + right-click haters: ctrl + click)
+	- EMC2 AXIS style interactions
+		- rotation is done on the object, not the camera for a more intuitive interaction
+		- non-linear zoom (again for a more intuitive interaction)
+	- EMC2 AXIS style ui (where red => blue)
+
+- Configurable because you might just be crazy enough to hate on EMC 2 AXIS
+	- optional build platform grid (similar to the RepRap Host Software's)
+	- optional buld platform outlines
+	- optional toolhead display
+	- all colors are configurable (through js.. anyone want to make more css-based stuff?)
+	- css configurable background color (TODO: more css-based color options)
+
+CNC Build Canvas
+==================
+The most usefull aspect of cad canvas atm. This is a cad canvas specifically for 
+cnc and cam preview screens.
+
+
+To create a cnc build canvas for the "canvasDiv" element you can simply call:
+
+	$("#canvasDiv").CNCBuildCanvas();
+
+
+Of course realistically we usually need some non-default config options:
+
+	var options = { platform: {grid: true} };
+	$("#canvasDiv").CNCBuildCanvas(options);
+
+
+And more to the point what we come here to do is actually display stuff. So 
+if you first load a gcode object into the string gcode you can then load it using 
+the drawGCode method (this is a temporary hack. expect ajax loads in the future):
+
+	$("#canvasDiv").CNCBuildCanvas();
+	var gcode = "some gcode string (this string would not work so well)";
+
+	//drawing the gcode behind the scenes
+	canvas.drawGCode(gcode);
+
+	//updating the rendered display
+	canvas.model.updateRender();
+
+
+CNCBuildCanvas Configuration Options (including default values):
+
+	drawDimensions: true,
+	measurementUnit: "mm",
+	endcapSize: 0.25,
+
+	toolEnabledColor: "FFFFFF",
+	toolDisabledColor: "999999",
+	toolHistoryColor: "0033CC",
+	platformColor: "0088FF",
+	dimensionColor: "0088FF",
+
+	platform: {
+		grid: false,
+		outline: true,
+
+		size: [10, 10],
+		ruleIncrement: [0.5, 0.5],
+	},
+
+	toolhead: {
+		enabled: true
+	}
+
+
+
+Dependancies
+==============
+
+- Three.js (D1plo1d fork required for text, rotation and a couple other things)
+- JQuery (1.4.2)
+- JQuery MouseWheel (bindings for the mouse scroll wheel)
+
+
+Want to help? Heres a breif TODO List
+=======================================
+
+- add STL rendering
+	++ Tony Buser has graciously ported his stl rendering to three.js: http://github.com/tbuser/three.js/blob/master/examples/stl_viewer.html)
+- add gcode/stl ajax loading
+- moar css-based cad canvas styling!
+- make 3d text transforms (fork D1plo1d's Three.js Fork) so cnc build canvas measurements are less fugly and annoying.
+
+- ..and anything else that can make cad canvas more awesome! (fork it. make it awesome. i will pull it!)
+
+Oh yeah.. and this is all super-beta and liable to change (but you already figured that out, right?)
+
+Happy Hacking!
+
+Rob

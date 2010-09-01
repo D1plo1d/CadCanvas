@@ -1,0 +1,94 @@
+<html>
+
+	<head>
+		<!-- Lib
+				 ================ -->
+
+		<!--script type="text/javascript" src="../lib/three.js"></script-->
+
+		<script type="text/javascript" src="../lib/three/src/Three.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Color.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Vector2.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Vector3.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Vector4.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Rectangle.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Matrix4.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Vertex.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Face3.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Face4.js"></script>
+		<script type="text/javascript" src="../lib/three/src/core/Geometry.js"></script>
+		<script type="text/javascript" src="../lib/three/src/cameras/Camera.js"></script>
+		<script type="text/javascript" src="../lib/three/src/objects/Object3D.js"></script>
+		<script type="text/javascript" src="../lib/three/src/objects/Mesh.js"></script>
+		<script type="text/javascript" src="../lib/three/src/objects/Particle.js"></script>
+		<script type="text/javascript" src="../lib/three/src/objects/Text.js"></script>
+		<script type="text/javascript" src="../lib/three/src/objects/Line.js"></script>
+		<script type="text/javascript" src="../lib/three/src/materials/BitmapUVMappingMaterial.js"></script>
+		<script type="text/javascript" src="../lib/three/src/materials/ColorFillMaterial.js"></script>
+		<script type="text/javascript" src="../lib/three/src/materials/ColorStrokeMaterial.js"></script>
+		<script type="text/javascript" src="../lib/three/src/materials/FaceColorFillMaterial.js"></script>
+		<script type="text/javascript" src="../lib/three/src/materials/FaceColorStrokeMaterial.js"></script>
+		<script type="text/javascript" src="../lib/three/src/scenes/Scene.js"></script>
+		<script type="text/javascript" src="../lib/three/src/renderers/Renderer.js"></script>
+		<script type="text/javascript" src="../lib/three/src/renderers/CanvasRenderer.js"></script>
+		<script type="text/javascript" src="../lib/three/src/renderers/SVGRenderer.js"></script>
+		<script type="text/javascript" src="../lib/three/src/renderers/renderables/RenderableFace3.js"></script>
+		<script type="text/javascript" src="../lib/three/src/renderers/renderables/RenderableFace4.js"></script>
+		<script type="text/javascript" src="../lib/three/src/renderers/renderables/RenderableParticle.js"></script>
+		<script type="text/javascript" src="../lib/three/src/renderers/renderables/RenderableLine.js"></script>    
+		<script type="text/javascript" src="../lib/three/src/renderers/renderables/RenderableText.js"></script>
+
+		<script type="text/javascript" src="../lib/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="../lib/jquery.mousewheel.min.js"></script>
+
+		<!-- Src
+				 ================ -->
+
+		<link type="text/css" href="../src/css/cad_canvas.css" rel="stylesheet" />
+
+		<script type="text/javascript" src="../src/js/cad_canvas/cad_canvas.js"></script>
+		<script type="text/javascript" src="../src/js/cad_canvas/mouse_interaction_model.js"></script>
+		<script type="text/javascript" src="../src/js/cad_canvas/model.js"></script>
+
+		<script type="text/javascript" src="../src/js/cad_canvas/ext/dimension.js"></script>
+		<script type="text/javascript" src="../src/js/cad_canvas/ext/toolhead.js"></script>
+		<script type="text/javascript" src="../src/js/cad_canvas/ext/cnc_build_canvas.js"></script>
+
+		<script type="text/javascript" src="../src/js/gcode_interpretter.js"></script>
+
+		<!-- Test Case
+				 ================ -->
+
+		<script type="text/javascript" src="gcode/2d_gcode.js"></script>
+		<!--script type="text/javascript" src="gcode/3d_gcode.js"></script-->
+		<!--script type="text/javascript" src="gcode/3d_gcode_large.js"></script-->
+
+		<script type="text/javascript">
+
+			var canvas;
+			$(function() {
+					canvas = $("#canvasDiv").CNCBuildCanvas({
+					platform: {
+//						size: [400, 400],
+						size: [10, 10],
+						ruleIncrement: [0.5, 0.5],
+					}
+				});
+//				canvas.model.zoom_scale = 100;
+				canvas.model.zoom_scale = 1;
+
+				//$("#canvasDiv").html(gcode);
+				canvas.drawGCode(gcode);
+				canvas.model.updateRender();
+
+			});
+		</script>
+	</head>
+
+	<body style="margin: 0px; padding: 0px;">
+		<!--div id="status" style="position: absolute; left: 20px; top: 20px;"></div-->
+		<button style="position: absolute; left: 100px; top: 10%;" onClick="canvas.toolhead.previewGCode();">Preview</button>
+		<div id="canvasDiv" style="position: absolute; right: 1%; top: 10%; height: 89%; width: 73%; margin: 0px; padding: 0px;"></div>
+	</body>
+
+</html>
