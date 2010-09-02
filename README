@@ -3,7 +3,11 @@ Cad Canvas - a 3d CAD/CAM Preview frame in HTML5 Canvas
 
 I will be adding a readme here. But for the time being your best way to 
 learn what Cad Canvas is and how it works is to head over to the example 
-and take a look at it's source. (examples/gcode_canvas.html)
+and take a look at it's source.
+
+- source at:		examples/gcode_canvas.html
+or
+- live demo at: http://www.d1plo1d.com/cad_canvas/examples/gcode_canvas.html
 
 Also sorry about some of the variable names.. I was learning ruby at the same 
 time I was writing this and some of the ruby_variable_names may have 
